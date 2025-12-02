@@ -5,22 +5,13 @@ metadata:
   namespace: monitoring
 spec:
   interval: 5m
-  timeout: 10m
   chart:
     spec:
       chart: kube-prometheus-stack
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-        namespace: flux-system
-      interval: 1h
-  install:
-    createNamespace: true
-    remediation:
-      retries: 3
-  upgrade:
-    remediation:
-      retries: 3
+        namespace: monitoring
 
   # Values override (optional)
   values:
