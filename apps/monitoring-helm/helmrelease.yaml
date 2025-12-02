@@ -1,20 +1,38 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta2
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: kube-prometheus-stack
   namespace: monitoring
 spec:
   interval: 5m
+  timeout: 10m
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: "55.*"     # optional—flux will select the latest matching
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
+      interval: 1h
   install:
-    createNamespace: false
+    createNamespace: true
+    remediation:
+      retries: 3
   upgrade:
     remediation:
       retries: 3
+
+  # Values override (optional)
+  values:
+    grafana:
+      adminPassword: "admin"   # change in production
+      service:
+        type: ClusterIP
+
+    prometheus:
+      service:
+        type: ClusterIP
+
+    alertmanager:
+      service:
+        type: ClusterIP
