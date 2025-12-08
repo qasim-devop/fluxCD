@@ -1,0 +1,11 @@
+# ---- Ignore GitHub tokens and secret files ----
+FluxCD-github-token.txt
+*.token
+*.pat
+*.key
+*.secret
+*.creds
+*.env
+secret/
+secrets/
+tokens/
