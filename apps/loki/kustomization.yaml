@@ -7,3 +7,4 @@ resources:
   -values.yaml
   - helmrelease.yaml
   - helmrepository.yaml
+  - namespace.yaml
