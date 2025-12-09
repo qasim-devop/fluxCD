@@ -7,10 +7,10 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: loki
+      chart: loki-stack
       sourceRef:
         kind: HelmRepository
-        name: grafana
+        name: loki
         namespace: monitoring
   #valuesFrom:
   #  - kind: ConfigMap
