@@ -8,12 +8,11 @@ spec:
   chart:
     spec:
       chart: loki
-      version: "6.x.x"
       sourceRef:
         kind: HelmRepository
         name: grafana
         namespace: monitoring
-  valuesFrom:
-    - kind: ConfigMap
-      name: loki-values
-      valuesKey: values.yaml
+  #valuesFrom:
+  #  - kind: ConfigMap
+  ##    name: loki-values
+   #   valuesKey: values.yaml
