@@ -5,21 +5,35 @@ metadata:
   namespace: monitoring
 data:
   values: |
-    # Use monolithic single-process mode
-    deploymentMode: "SingleBinary"
+    deploymentMode: SingleBinary
 
     loki:
       auth_enabled: false
-
       storage:
         type: filesystem
 
     singleBinary:
       replicas: 1
 
+    simpleScalable:
+      enabled: false
+
+    # MUST disable these for SingleBinary
+    ingester:
+      replicas: 0
+    querier:
+      replicas: 0
+    queryFrontend:
+      replicas: 0
+    compactor:
+      replicas: 0
+    indexGateway:
+      replicas: 0
+
     persistence:
       enabled: true
       size: 5Gi
+      storageClass: standard
 
     gateway:
       enabled: true
