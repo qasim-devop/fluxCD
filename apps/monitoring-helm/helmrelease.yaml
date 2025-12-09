@@ -20,13 +20,12 @@ spec:
         type: ClusterIP
 
       ## ✨ Add Loki datasource directly here
-      additionalDataSources:
-        - name: Loki
-          type: loki
-          uid: loki
-          url: http://loki.monitoring.svc.cluster.local:3100
-          access: proxy
-          isDefault: false
+      sidecar:
+        datasources:
+          enabled: true
+          label: grafana_datasource   # MUST match your ConfigMap label key
+          labelValue: "1"             # MUST match your ConfigMap label value
+          reloadInterval: 10s
 
     prometheus:
       service:
