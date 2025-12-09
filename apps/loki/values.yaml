@@ -13,14 +13,30 @@ data:
     singleBinary:
       replicas: 1
 
+    # CRITICAL: disable ALL simpleScalable components
+    simpleScalable:
+      enabled: false
+      write:
+        replicas: 0
+      read:
+        replicas: 0
+      backend:
+        replicas: 0
+      gateway:
+        replicas: 0
+      chunksCache:
+        enabled: false
+
+    # Loki filesystem storage for local/minikube
+    storage:
+      type: filesystem
+
     persistence:
       enabled: true
       size: 5Gi
       storageClass: ""
 
-    storage:
-      type: filesystem
-
+    # Expose the gateway (Promtail uses this)
     gateway:
       enabled: true
       service:
@@ -28,11 +44,3 @@ data:
 
     service:
       type: ClusterIP
-
-    monitoring:
-      dashboards:
-        enabled: true
-      rules:
-        enabled: true
-      serviceMonitor:
-        enabled: true
