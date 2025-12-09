@@ -4,14 +4,15 @@ metadata:
   name: loki-values
   namespace: monitoring
 data:
-  values.yaml: |
-    deploymentMode: SingleBinary
+  values: |
+    # Use monolithic single-process mode
+    deploymentMode: "SingleBinary"
 
     loki:
       auth_enabled: false
 
-    storage:
-      type: filesystem
+      storage:
+        type: filesystem
 
     singleBinary:
       replicas: 1
