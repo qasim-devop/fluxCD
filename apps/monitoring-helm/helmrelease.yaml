@@ -13,18 +13,20 @@ spec:
         name: prometheus-community
         namespace: monitoring
 
-   # Values override (optional)
   values:
     grafana:
-      adminPassword: "admin"   # change in production
+      adminPassword: "admin"
       service:
         type: ClusterIP
 
-      ## 👇 THIS IS THE IMPORTANT PART (enables ConfigMap datasource loading)
-      sidecar:
-        datasources:
-          enabled: true
-          label: grafana_datasource
+      ## ✨ Add Loki datasource directly here
+      additionalDataSources:
+        - name: Loki
+          type: loki
+          uid: loki
+          url: http://loki.monitoring.svc.cluster.local:3100
+          access: proxy
+          isDefault: false
 
     prometheus:
       service:
