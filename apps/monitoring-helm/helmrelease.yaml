@@ -13,12 +13,18 @@ spec:
         name: prometheus-community
         namespace: monitoring
 
-  # Values override (optional)
+   # Values override (optional)
   values:
     grafana:
       adminPassword: "admin"   # change in production
       service:
         type: ClusterIP
+
+      ## 👇 THIS IS THE IMPORTANT PART (enables ConfigMap datasource loading)
+      sidecar:
+        datasources:
+          enabled: true
+          label: grafana_datasource
 
     prometheus:
       service:
