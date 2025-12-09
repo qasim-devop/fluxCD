@@ -4,4 +4,4 @@ resources:
   - podinfo
   - monitoring-helm
   - loki
-  - promtail
+  #- promtail
